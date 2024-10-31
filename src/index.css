@@ -4,6 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-NavLink.active{
+.routes .active{
   font-weight: 700;
 }
