@@ -7,12 +7,13 @@ import Contact from './components/Pages/Contact';
 import Home from './components/Pages/Home';
 import Menu from './components/Pages/Menu';
 import GiftCards from './components/Pages/GiftCards';
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <BrowserRouter >
-    <div className="App">
+    <div className="App flex flex-col min-h-screen">
       <NavBar />
     <div>
       <Routes>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
+    <Footer />
     </div>
     </BrowserRouter>
   );
