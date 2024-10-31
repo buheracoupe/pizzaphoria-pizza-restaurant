@@ -15,52 +15,10 @@ function NavBar() {
   
   return (
     <>
-    {/* md: navigation bar */}
-    <div className="md-nav hidden md:flex items-center px-12 gap-8 h-24 p-2 justify-between">
-    <NavLink
-    to="/">
-    <img className='h-20 object-contain' src={blackLogo} alt="black pizzaphoria logo" />
-    </NavLink>
-    <div className="routes flex font-Quicksand text-lg gap-8 items-center">
-      <NavLink
-      className={({ isActive }) =>
-        isActive ? 'nav-link active group' : 'nav-link group'
-      }
-       to="/menu">
-      Menu
-      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
-      </NavLink>
-      <NavLink
-      className={({ isActive }) =>
-        isActive ? 'nav-link active group' : 'nav-link group'
-      }
-       to="/ourstory">
-      Our Story
-      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
-      </NavLink>
-      <NavLink
-      className={({ isActive }) =>
-        isActive ? 'nav-link active group' : 'nav-link group'
-      }
-       to="/giftcards">
-      Gift Cards
-      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
-      </NavLink>
-      <NavLink
-      className={({ isActive }) =>
-        isActive ? 'nav-link active group' : 'nav-link group'
-      }
-       to="/contact">
-      Contact
-      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
-      </NavLink>
-    </div>
-    <button className='font-Flamenco font-semibold p-2 text-lg rounded-lg transition-all duration-300 hover:bg-naplesYellowDark bg-naplesYellow'>Order Online</button>
-    </div>
+  {/* Desktop Navigation Bar */}
+  <MdNavBar />
 
-
-
-    {/* mobile burger navigation */}
+  {/* Mobile Navigation (Burger Menu) */}
     { isMenuOpen?
      <IoCloseSharp
       className='md:hidden cursor-pointer absolute text-gray-600 text-4xl right-8 top-8'
@@ -123,6 +81,54 @@ function NavBar() {
     </div>
     </div>
     </>
+  )
+}
+
+
+
+export function MdNavBar(){
+  return(
+    <div className="md-nav hidden md:flex items-center px-12 gap-8 h-24 p-2 justify-between">
+    <NavLink
+    to="/">
+    <img className='h-20 object-contain' src={blackLogo} alt="black pizzaphoria logo" />
+    </NavLink>
+    <div className="routes flex font-Quicksand text-lg gap-8 items-center">
+      <NavLink
+      className={({ isActive }) =>
+        isActive ? 'nav-link active group' : 'nav-link group'
+      }
+       to="/menu">
+      Menu
+      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
+      </NavLink>
+      <NavLink
+      className={({ isActive }) =>
+        isActive ? 'nav-link active group' : 'nav-link group'
+      }
+       to="/ourstory">
+      Our Story
+      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
+      </NavLink>
+      <NavLink
+      className={({ isActive }) =>
+        isActive ? 'nav-link active group' : 'nav-link group'
+      }
+       to="/giftcards">
+      Gift Cards
+      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
+      </NavLink>
+      <NavLink
+      className={({ isActive }) =>
+        isActive ? 'nav-link active group' : 'nav-link group'
+      }
+       to="/contact">
+      Contact
+      <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
+      </NavLink>
+    </div>
+    <button className='font-Flamenco font-semibold p-2 text-lg rounded-lg transition-all duration-300 hover:bg-naplesYellowDark bg-naplesYellow'>Order Online</button>
+    </div>
   )
 }
 

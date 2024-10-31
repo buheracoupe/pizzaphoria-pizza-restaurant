@@ -21,7 +21,7 @@ function HomeBottom() {
 ref = {imgRef}
 className='h-screen object-cover w-full'
 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -200 }}
-transition={{duration: 2}}
+transition={{duration: 2, delay: .2}}
 src={palatablepizza}
 alt="palatable pizza" />
 <div className="right flex flex-col justify-center items-center gap-8">
@@ -36,7 +36,7 @@ sequence={strings}
 <Link to="/menu">
 <motion.button
 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 400 }}
-transition={{duration: 1}}
+transition={{duration: 1, delay: .2}}
  className='border-2 border-gray-500 p-2 font-medium font-Flamenco w-36 transition-all duration-300 hover:bg-naplesYellow'>
     VIEW MENUS</motion.button>
  </Link>
@@ -51,8 +51,8 @@ transition={{duration: 1}}
     </div>
     <motion.img
     ref={secondImgRef}
-    animate={secondInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 200 }}
-    transition={{duration: 2}}
+    animate={secondInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 400 }}
+    transition={{duration: 2, delay: .2}}
     className='h-[100vh] w-full object-cover object-center'
     src={ourStoryImg}
     alt="girl walking and contemplating" />
