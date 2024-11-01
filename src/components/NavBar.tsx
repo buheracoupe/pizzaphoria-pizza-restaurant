@@ -72,7 +72,11 @@ function NavBar() {
     <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
     </NavLink>
     </div>
+    <NavLink
+     to="/order"
+     onClick={()=> handleMenuToggle()}>
     <button className='font-Flamenco font-semibold p-2 text-xl rounded-lg transition-all duration-300 hover:bg-naplesYellowDark bg-naplesYellow'>Order Online</button>
+    </NavLink>
     <div className=" text-black absolute bottom-8 md:hidden flex gap-7 text-2xl  icons">
         <FaInstagram className='h-6 hover:text-naplesYellow cursor-pointer' />
         <FaFacebook className='h-6 hover:text-naplesYellow cursor-pointer' />
@@ -127,7 +131,9 @@ export function MdNavBar(){
       <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
       </NavLink>
     </div>
+    <NavLink to="/order">
     <button className='font-Flamenco font-semibold p-2 text-lg rounded-lg transition-all duration-300 hover:bg-naplesYellowDark bg-naplesYellow'>Order Online</button>
+    </NavLink >
     </div>
   )
 }

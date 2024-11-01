@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, useLocation } from 'react-router-dom';
+import { BrowserRouter, useLocation, ScrollRestoration } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import {Routes, Route} from "react-router-dom";
 import OurStory from './components/Pages/OurStory';
@@ -9,6 +9,19 @@ import Menu from './components/Pages/Menu';
 import GiftCards from './components/Pages/GiftCards';
 import Footer from './components/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useLayoutEffect } from 'react';
+import OrderPage from './components/Pages/pageComponents/OrderPage';
+
+
+export function ScrollToTop(){
+const {pathname} = useLocation();
+
+useLayoutEffect(()=>{
+  window.scrollTo({top:0, behavior: "smooth" });
+}, [pathname])
+
+return null
+}
 
 export function AnimatedRoutes(){
 
@@ -32,6 +45,9 @@ export function AnimatedRoutes(){
         <Route
          path="/contact"
           element={<PageWrapper><Contact /></PageWrapper>} />
+        <Route
+         path="/order"
+          element={<PageWrapper><OrderPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   )
@@ -59,6 +75,7 @@ function App() {
   return (
     <BrowserRouter >
     <div className="App flex flex-col min-h-screen">
+    <ScrollToTop />
       <NavBar />
     <div>
     <AnimatedRoutes />

@@ -51,41 +51,41 @@ export default Menu
             <p>We also offer a variety of crusts: Thin Crust, Thick Crust, and Deep Dish. </p>
             <p>Thank you for your support and hope to see you soon at <span className='font-Flamenco font-bold text-2xl'>Pizzaphoria!</span></p>
             <p>Head Chef, Charmaine Chanza</p>
-      <div className="pizzas grid divide-x-2 divide-dashed divide-orange-300 grid-cols-2">
-        <div className="left flex flex-col gap-5 p-4">
-          <div className="pizza1">
+      <div className="pizzas grid md:divide-x-2 divide-dashed divide-orange-300 md:grid-cols-2">
+        <div className="left flex divide-y-2 divide-orange-300 divide-dotted md:divide-y-0 flex-col gap-5 p-4">
+          <div className="pizza1 mt-4 p-4 md:mt-0 md:p-0">
             <h2 className="font-Flamenco font-semibold text-2xl">Classic Margherita</h2>
             <p>Our famous pizza with fresh mozzarella, basil, olive oil, and extra cheese.</p>
             <p className='font-semibold'> $15.99</p>
           </div>
-          <div className="pizza2">
+          <div className="pizza2 mt-4 p-4 md:mt-0 md:p-0">
             <h2 className="font-Flamenco font-semibold text-2xl">Straciattella</h2>
             <p>Mortadella, tomato estratto, shaved garlic & finished with our pulled stracciatella</p>
             <p className='font-semibold'> $17.20</p>
           </div>
-          <div className="pizza3">
+          <div className="pizza3 mt-4 p-4 md:mt-0 md:p-0">
             <h2 className="font-Flamenco font-semibold text-2xl">Mushroom Risotto</h2>
             <p>Our homemade risotto with fresh mozzarella, basil, olive oil, mushrooms, and extra cheese.</p>
             <p className='font-semibold'> $18.65</p>
           </div>
-          <div className="pizza4">
+          <div className="pizza4 mt-4 p-4 md:mt-0 md:p-0">
             <h2 className="font-Flamenco font-semibold text-2xl">Pepperoni</h2>
             <p>pepperoni, mozzarella, marinara & flowering oregano</p>
             <p className='font-semibold'> $16.99</p>
             </div>
-            <div className="pizza5">
+            <div className="pizza5 mt-4 p-4 md:mt-0 md:p-0">
             <h2 className="font-Flamenco font-semibold text-2xl">La Diavola</h2>
             <p>calabrese sausage, soppressata, calabrian chilies marinara & mozzarella</p>      
            <p className='font-semibold'> $18</p>
             </div>
         </div>
-        <div className="right flex flex-col gap-5 p-4">
-        <div className="pizza5">
+        <div className="right divide-y-2 divide-orange-300 md:divide-y-0 divide-dotted flex flex-col gap-5 p-4">
+        <div className="pizza5 md:mt-0 md:p-0 mt-4 p-4">
             <h2 className="font-Flamenco font-semibold text-2xl">Lorraine</h2>
             <p>meatball, ricotta, calabrian chilies, marinara & mozz.</p>      
            <p className='font-semibold'> $16.50</p>
             </div>
-            <div className="pizza5">
+            <div className="pizza5 md:mt-0 md:p-0 mt-4 p-4">
             <h2 className="font-Flamenco font-semibold text-2xl">Quattro Formaggi</h2>
             <p>[white pie] four cheeses & guanciale</p>      
            <p className='font-semibold'> $16</p>
@@ -95,12 +95,12 @@ export default Menu
             <p>[for two] salumi, meatball, calabrian chilies, ricotta, mozzarella & marinara</p>      
            <p className='font-semibold'> $15</p>
             </div>
-            <div className="pizza5">
+            <div className="pizza5 md:mt-0 md:p-0 mt-4 p-4">
             <h2 className="font-Flamenco font-semibold text-2xl">Market Pizza</h2>
             <p>Storey Farms Duck Confit, Chiogga di Marina Pumpkin, Maitake mushrooms & black peppers creme fraiche.</p>      
            <p className='font-semibold'> $18</p>
             </div>
-            <div className="pizza5">
+            <div className=" md:mt-0 md:p-0 mt-4 p-4">
             <h2 className="font-Flamenco font-semibold text-2xl">Pizzazzo</h2>
             <p>Prosciutto, meatball, mozzarella, basil, olive oil, garlic, rosemary, thyme & oregano</p>      
            <p className='font-semibold'> $18</p>
@@ -146,6 +146,32 @@ export function SaladMenu(){
 
 export function WineMenu(){
   return(
-    <div className="wineMenu">Wines</div>
+    <div className="wineMenu max-w-[800px] flex flex-col m-8 gap-4">
+      <div className="wine1">
+        <h2 className="font-Flamenco font-[600] text-2xl">Montelliana | Della Venezie Italy</h2>
+        <p className='text-orange-300'>Fruity & Easy & Bright</p>
+        <p className='font-semibold'>$36</p>
+      </div>
+      <div className="wine2">
+        <h2 className="font-Flamenco font-[600] text-2xl">Coronello | Santa Maria delle Grazie Italy</h2>
+        <p className='text-orange-300'>Creamy & Intense & Rich</p>
+        <p className='font-semibold'>$42</p>
+        </div>
+        <div>
+          <h2 className='font-Flamenco font-[600] text-2xl'>Oxford Landing | Australia</h2>
+          <p className='text-orange-300'> Creamy & Nice Oak</p>
+          <p className='font-semibold'>$39</p>
+        </div>
+        <div>
+          <h2 className='font-Flamenco font-[600] text-2xl'>Clean Slate Riesling | Mosel, Germany</h2>
+          <p className='text-orange-300'>Creamy & Nice Oak</p>
+          <p className='font-semibold'>$42</p>
+          </div>
+          <div>
+            <h2 className='font-Flamenco font-[600] text-2xl'>Chardonnay | Saint-Émilion, France</h2>
+            <p className='text-orange-300'>Creamy & Nice Oak</p>
+            <p className='font-semibold'>$48</p>
+    </div>
+    </div>
   )
 }
