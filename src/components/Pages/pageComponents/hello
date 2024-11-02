@@ -1,0 +1,28 @@
+ // const { pizzaoption, size, toppings } = data;
+        // const selectedPizza = pizzas.find(pizza => pizza.name === pizzaoption)!;
+        // orderArr.push({item: selectedPizza.name, price: selectedPizza.price})
+        // if(size){
+        //     orderArr.push({item: size, price: 0})
+        // }
+        // if(toppings){
+        //     toppings.forEach(topping => {
+        //         orderArr.push({item: topping, price: toppings.find(t => t.topping === topping)!.price})
+        //     })
+        // }
+        // reset()
+
+        // addOrder: (state, action) => {
+        //     state.orders.push(action.payload)
+        //     state.totalPrice += action.payload.price
+        // },
+        // removeOrder: (state, action) => {
+        //     const index = state.orders.findIndex(order => order.id === action.payload)
+        //     if (index!== -1) {
+        //         state.orders.splice(index, 1)
+        //         state.totalPrice -= action.payload.price
+        //     }
+        // },
+        // clearOrders: (state) => {
+        //     state.orders = []
+        //     state.totalPrice = 0
+        // }

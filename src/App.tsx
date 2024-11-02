@@ -10,7 +10,7 @@ import GiftCards from './components/Pages/GiftCards';
 import Footer from './components/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
-import OrderPage from './components/Pages/pageComponents/OrderPage';
+import OrderPage from './components/Pages/pageComponents/OrderPages/OrderPage';
 
 
 export function ScrollToTop(){
