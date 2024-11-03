@@ -7,6 +7,7 @@ interface Order {
     name?: string;
     topping?: string;
     price: number;
+    size?: string;
     // later fix the order arrays to be consistent, have an id, name and price.
 }
 

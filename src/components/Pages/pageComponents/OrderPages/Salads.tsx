@@ -2,6 +2,8 @@ import React from 'react'
 import {UseFormRegister, FieldValues } from 'react-hook-form'
 import { useAppDispatch } from '../../../Redux/hooks';
 import { motion} from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { addOrder } from '../../../Redux/OrderSlice';
 
 interface animatedMenuWrapperProps{
     children: React.ReactNode;
@@ -46,47 +48,41 @@ const salads = [
     },
 ];
 
-export interface Functions {
-  register: UseFormRegister<FieldValues>
-  getValues: () => any;
-    reset: () => void;
-}
-
-export interface Props{
-    formFunctions: Functions;
-}
-
-interface Salad{
-    id: string;
-    name: string;
-    price: number;
-}
 
 
-function Salads({formFunctions}:Props){
 
-    const { register, getValues, reset } = formFunctions;
+function Salads(){
+const {register, getValues, handleSubmit} = useForm();
+const dispatch = useAppDispatch();
   return (
             
     <div className='flex flex-col gap-12 items-center'>
         <AnimatedMenuWrapper className="flex flex-col gap-4 items-center">
         <div className="container flex flex-col gap-3 items-center">
-    {salads.map((salad: Salad) =>{
+    {salads.map((salad) =>{
         return(
-            <div className='flex justify-between odd:bg-slate-100 p-2 w-44' key={salad.id}>
-                <label htmlFor={salad.id}>{salad.name}</label>
+            <label htmlFor={salad.id} className='flex cursor-pointer justify-between odd:bg-slate-100 p-2 w-44' key={salad.id}>
+                <div >{salad.name}</div>
                 <p>${salad.price}</p>
                 <input className='accent-naplesYellow' type="checkbox" id={salad.id} {...register(salad.name)} />
-            </div>
+            </label>
         )
     })}
     </div>
     <button 
             onClick={(event) => {
                 event.preventDefault();
-                const values= getValues();
-                console.log(values);
-                reset();
+                const values = getValues()
+
+                // learnt a more efficient way to run the check logic with Set and the has method
+               const selectedSalads = new Set(Object.keys(values).filter((value) => {
+                    return values[value] === true
+                }))
+
+                const saladOrders = salads.filter((salad) => selectedSalads.has(salad.name))
+                console.log(saladOrders)
+                saladOrders.forEach((salad)=> dispatch(addOrder(salad)))
+
             }}
             className="bg-naplesYellow hover:bg-naplesYellowDark p-2 font-Flamenco">Add Order</button>
     </AnimatedMenuWrapper>

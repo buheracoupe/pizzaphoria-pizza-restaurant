@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
 import OrderPage from './components/Pages/pageComponents/OrderPages/OrderPage';
+import { closeCart } from './components/Redux/NavSlice';
+import { useAppDispatch,useTypedSelector } from './components/Redux/hooks';
 
 
 export function ScrollToTop(){
@@ -72,9 +74,17 @@ export function PageWrapper({children}: PageWrapperProps){
 
 
 function App() {
+  const dispatch = useAppDispatch();
+  const cartState = useTypedSelector((state) => state.nav.cartOpen)
   return (
     <BrowserRouter >
-    <div className="App flex flex-col min-h-screen">
+    <div
+    onClick={() => {
+      if(cartState){
+        dispatch(closeCart());
+      }
+    }}
+     className="App flex flex-col min-h-screen">
     <ScrollToTop />
       <NavBar />
     <div>

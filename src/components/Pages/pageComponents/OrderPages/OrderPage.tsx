@@ -6,7 +6,7 @@ import { GiSodaCan } from "react-icons/gi";
 import OrderSummary from './OrderSummary';
 import { useAppDispatch } from '../../../Redux/hooks';
 import { addOrder } from '../../../Redux/OrderSlice';
-import Salads from "./Salads";
+import Salads, { AnimatedMenuWrapper } from "./Salads";
 import Beverages from './Beverages';
 import Wine from './Wine';
 
@@ -16,6 +16,7 @@ interface Pizza {
     id?: string,
     name: string,
     price: number,
+    size?: string;
 }
 const pizzas: Pizza[] =[
         {id: "1", name: "Classic Margherita", price: 15.99},
@@ -77,31 +78,39 @@ function OrderPage() {
         <div className="customerorder">
         <div className="ordersection justify-center flex gap-5 font-Flamenco text-2xl">
             <h1
-            className='flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            className={activeSection === "pizza" ? 'flex gap-2 items-center font-bold hover:text-naplesYellowDark cursor-pointer':
+                'flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            }
             onClick={()=> updateSection("pizza")}>Pizzas<FaPizzaSlice className='text-naplesYellowDark'/></h1>
             <h1
-            className='flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            className={activeSection === "salads" ? 'flex gap-2 items-center font-bold hover:text-naplesYellowDark cursor-pointer':
+                'flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            }
             onClick={()=> updateSection("salads")}>Salads<LuSalad className='text-naplesYellowDark'/></h1>
             <h1
-            className='flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            className={activeSection === "wine" ? 'flex gap-2 items-center font-bold hover:text-naplesYellowDark cursor-pointer':
+                'flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            }
             onClick={()=> updateSection("wine")}>Wine <FaWineBottle className='text-naplesYellowDark'/></h1>
             <h1
-            className='flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            className={activeSection === "beverages" ? 'flex gap-2 items-center font-bold hover:text-naplesYellowDark cursor-pointer':
+                'flex gap-2 items-center hover:text-naplesYellowDark cursor-pointer'
+            }
             onClick={()=> updateSection("beverages")}>Beverages<GiSodaCan className='text-naplesYellowDark'/></h1>
         </div>
         <div className="sections font-Quicksand">
-        {activeSection === "pizza" && <div className="section1 flex relative flex-col gap-6 items-center m-4">
+        {activeSection === "pizza" && <AnimatedMenuWrapper><div className="section1 flex relative flex-col gap-6 items-center m-4">
 
-        <div className="pizzas-section grid gap-y-4 gap-x-8 grid-cols-2">
+        <div className="pizzas-section m-8 grid gap-y-4 gap-x-8 grid-cols-2">
         {pizzas.map(pizza => {
             return (
-            <div key={pizza.id} className="pizza-item flex gap-2 items-center bg-slate-50 justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
-                <label htmlFor={pizza.id} className="label flex flex-row gap-2 items-center">
+            <label htmlFor={pizza.id} key={pizza.id} className="pizza-item flex gap-2 items-center bg-slate-50 justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
+                <div className="label flex flex-row gap-2 items-center">
                 <p>{pizza.name}</p>
                 <p>${pizza.price}</p>
-                </label>
+                </div>
                 <input className='accent-naplesYellowDark' id={pizza.id} {...register("pizzaoption")} type="radio" value={pizza.name} />
-            </div>
+            </label>
             )
         })}
         </div>
@@ -120,13 +129,13 @@ function OrderPage() {
             <p className="font-Flamenco text-xl text-center p-2 font-semibold">Extra Toppings</p>
         {toppings.map(topping => {
             return (
-            <div key={topping.topping} className="topping-item flex gap-2 odd:bg-slate-100 items-center justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
-                <label htmlFor={topping.topping} className="label flex flex-row gap-2 items-center">
+            <label htmlFor={topping.topping} key={topping.topping} className="topping-item flex gap-2 odd:bg-slate-100 items-center justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
+                <div  className="label flex flex-row gap-2 items-center">
                 <p>{topping.topping}</p>
                 <p>${topping.price}</p>
-                </label>
+                </div>
                 <input className='accent-naplesYellowDark' id={topping.topping} {...register(topping.topping)} type="checkbox"/>
-            </div>
+            </label>
             )
         })}
         </div>
@@ -136,7 +145,6 @@ function OrderPage() {
             (event)=> {
                 event.preventDefault();
                 const values = getValues()
-                console.log(values)
                 reset();
                 const pizzaChoice = pizzas.find((pizza)=> pizza.name === values.pizzaoption)
                 const pieSize = values.size 
@@ -146,8 +154,8 @@ function OrderPage() {
                 console.log(extraToppings)
                 // now clean this and find a way to update the store
                 if(pizzaChoice){
+                    pizzaChoice.size = values.size
                     dispatch(addOrder(pizzaChoice))}
-
                     extraToppings.forEach(extraTopping => {
                         if(isTopping(extraTopping)){
                             dispatch(addOrder(extraTopping))
@@ -158,10 +166,10 @@ function OrderPage() {
          className='rounded-md  p-2 right-12 bottom-0 bg-naplesYellow hover:bg-naplesYellowDark'>Add Order</button>
        
         
-        </div>}
-        {activeSection === "salads" && <Salads formFunctions= {{getValues, register, reset}} />}
-        {activeSection === "wine" && <Wine formFunctions= {{getValues, register, reset}} />}
-        {activeSection === "beverages" && <Beverages formFunctions= {{getValues, register, reset}} />}
+        </div></AnimatedMenuWrapper>}
+        {activeSection === "salads" && <Salads />}
+        {activeSection === "wine" && <Wine />}
+        {activeSection === "beverages" && <Beverages />}
         </div>
         </div>
        <OrderSummary />

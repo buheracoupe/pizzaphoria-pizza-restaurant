@@ -5,8 +5,12 @@ import { CiMenuBurger } from "react-icons/ci";
 import { useState } from 'react';
 import { IoCloseSharp } from "react-icons/io5";
 import { FaFacebook, FaTwitter,FaInstagram } from 'react-icons/fa';
+import { MdTakeoutDining } from "react-icons/md";
+import { toggleCartOpen } from './Redux/NavSlice';
+import { useAppDispatch } from './Redux/hooks';
 
 function NavBar() {
+  const dispatch = useAppDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
   // const menuOpen: string ="nav relative flex-row md:flex font-Quicksand h-24 px-12 p-4 items-center justify-between gap-2"
@@ -19,14 +23,18 @@ function NavBar() {
   <MdNavBar />
 
   {/* Mobile Navigation (Burger Menu) */}
+  <MdTakeoutDining
+  onClick={() => dispatch(toggleCartOpen())}
+   className='md:hidden cursor-pointer absolute text-gray-600 text-4xl right-4 top-8' />
     { isMenuOpen?
      <IoCloseSharp
-      className='md:hidden cursor-pointer absolute text-gray-600 text-4xl right-8 top-8'
+      className='md:hidden cursor-pointer absolute text-gray-600 text-4xl right-14 top-8'
       onClick={()=> handleMenuToggle()}
     /> :
       <CiMenuBurger
     onClick={() => handleMenuToggle()}
-     className='md:hidden cursor-pointer absolute text-black text-3xl right-8 top-8'/>}
+     className='md:hidden cursor-pointer absolute text-gray-600 text-4xl right-14 top-8'/>}
+
     <div className="h-24 p-4 md:hidden bg-white px-12">
     <div className={isMenuOpen? menuOpen : "hidden"}>
     <NavLink
