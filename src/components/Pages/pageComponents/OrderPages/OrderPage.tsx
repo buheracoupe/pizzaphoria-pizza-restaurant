@@ -35,23 +35,19 @@ const pizzas: Pizza[] =[
         {id: "14", name:"Cannoli", price:16},
     ]
     interface Topping {
-        topping: string,
+        name: string,
         price: number,
     }
 const toppings: Topping[] = [
-    {topping: "Garlic Butter Prawns and Chilli", price: 3},
-    {topping: "Chorizzo", price: 1},
-    {topping: "Extra Cheese", price: 2},
-    {topping: "Egg Florentine", price: 2},
-    {topping: "Olives", price: 1},
-    {topping: "Pineapple", price: 1},
-    {topping: "Roasted Capicsum", price: 2}
+    {name: "Garlic Butter Prawns and Chilli", price: 3},
+    {name: "Chorizzo", price: 1},
+    {name: "Extra Cheese", price: 2},
+    {name: "Egg Florentine", price: 2},
+    {name: "Olives", price: 1},
+    {name: "Pineapple", price: 1},
+    {name: "Roasted Capicsum", price: 2}
 ]
-const variants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-};
+
 
 
 function OrderPage() {
@@ -67,7 +63,7 @@ function OrderPage() {
     // Topping typeguard
     function isTopping(order: any): order is Topping{
             return (typeof order === "object" && 
-                typeof order.topping === "string" &&
+                typeof order.name === "string" &&
                 typeof order.price === "number")
     }
     
@@ -104,7 +100,7 @@ function OrderPage() {
         <div className="pizzas-section m-8 grid gap-y-4 gap-x-8 grid-cols-2">
         {pizzas.map(pizza => {
             return (
-            <label htmlFor={pizza.id} key={pizza.id} className="pizza-item flex gap-2 items-center bg-slate-50 justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
+            <label htmlFor={pizza.id} key={pizza.id} className="pizza-item flex gap-2 items-center bg-slate-50 justify-between md:w-[300px] hover:bg-naplesYellow cursor-pointer">
                 <div className="label flex flex-row gap-2 items-center">
                 <p>{pizza.name}</p>
                 <p>${pizza.price}</p>
@@ -129,12 +125,12 @@ function OrderPage() {
             <p className="font-Flamenco text-xl text-center p-2 font-semibold">Extra Toppings</p>
         {toppings.map(topping => {
             return (
-            <label htmlFor={topping.topping} key={topping.topping} className="topping-item flex gap-2 odd:bg-slate-100 items-center justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
+            <label htmlFor={topping.name} key={topping.name} className="topping-item flex gap-2 odd:bg-slate-100 items-center justify-between w-[300px] hover:bg-naplesYellow cursor-pointer">
                 <div  className="label flex flex-row gap-2 items-center">
-                <p>{topping.topping}</p>
+                <p>{topping.name}</p>
                 <p>${topping.price}</p>
                 </div>
-                <input className='accent-naplesYellowDark' id={topping.topping} {...register(topping.topping)} type="checkbox"/>
+                <input className='accent-naplesYellowDark' id={topping.name} {...register(topping.name)} type="checkbox"/>
             </label>
             )
         })}
@@ -150,12 +146,13 @@ function OrderPage() {
                 const pieSize = values.size 
                 console.log({pizzaChoice, pieSize})
                 const extraToppingsArr = Object.keys(values).filter(key=> values[key] === true)
-                const extraToppings = extraToppingsArr.map((topping)=> toppings.find((toppingItem)=> toppingItem.topping === topping))
-                console.log(extraToppings)
+                const extraToppings = extraToppingsArr.map((topping)=> toppings.find((toppingItem)=> toppingItem.name === topping))
+                console.log(extraToppings, "did this work")
                 // now clean this and find a way to update the store
                 if(pizzaChoice){
+                    const pizzaWithSize = {...pizzaChoice, size:values.size}
                     pizzaChoice.size = values.size
-                    dispatch(addOrder(pizzaChoice))}
+                    dispatch(addOrder(pizzaWithSize))}
                     extraToppings.forEach(extraTopping => {
                         if(isTopping(extraTopping)){
                             dispatch(addOrder(extraTopping))

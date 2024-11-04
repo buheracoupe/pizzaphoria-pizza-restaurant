@@ -66,8 +66,8 @@ function NavBar() {
     isActive ? 'nav-link active font-bold group md: border-0 border-b-2 border-b-gray-500 w-full text-center' : 'nav-link group text-center md:border-0 border-b-2 border-b-gray-500 w-full'
     }     
     onClick={()=> handleMenuToggle()}
-    to="/giftcards">
-    Gift Cards
+    to="/hours">
+    Hours and Location
     <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
     </NavLink>
     <NavLink  
@@ -126,8 +126,8 @@ export function MdNavBar(){
       className={({ isActive }) =>
         isActive ? 'nav-link active group' : 'nav-link group'
       }
-       to="/giftcards">
-      Gift Cards
+       to="/hours">
+      Hours and Location
       <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-naplesYellowDark'></span>
       </NavLink>
       <NavLink

@@ -1,12 +1,16 @@
 import React from 'react'
 import { useMediaQuery } from 'usehooks-ts';
 import { useTypedSelector } from '../../../Redux/hooks';
+import { IoMdClose } from "react-icons/io";
+import { useAppDispatch } from '../../../Redux/hooks';
+import { removeOrder } from '../../../Redux/OrderSlice';
 
 function OrderSummary() {
     const orders = useTypedSelector((state) => state.order.orders)
     const totalPrice = useTypedSelector((state) => state.order.totalPrice);
-const mobileDesign = useMediaQuery("(max-width: 768px)");
-const cartOpen = useTypedSelector((state) => state.nav.cartOpen)
+    const dispatch = useAppDispatch();
+    const mobileDesign = useMediaQuery("(max-width: 768px)");
+    const cartOpen = useTypedSelector((state) => state.nav.cartOpen)
 let div1ClassName
 let div2ClassName
 // switch statement for mobliecart toggling
@@ -39,9 +43,18 @@ if(!mobileDesign){
     <div className="orders">
        {orders.map(order => {
         return (
-            <div key={order.id} className="order-item flex justify-between items-center">
-              <p>{order.topping}{order.name} {order.size ? `(${order.size})` : ''}
+            <div key={order.name} className="order-item flex justify-between items-center">
+              <div className='flex gap-2'>
+              <IoMdClose
+              onClick={() => {
+                 dispatch(removeOrder(order.name))
+                 console.log(orders, order.name)
+                }
+                 }
+              className='text-xl cursor-pointer text-gray-400'/>
+              <p>{order.name} {order.size ? `(${order.size})` : ''}
               </p>
+              </div>
               <p>${order.price}</p>
             </div>
         )

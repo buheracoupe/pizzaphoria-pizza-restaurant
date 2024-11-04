@@ -6,7 +6,7 @@ import OurStory from './components/Pages/OurStory';
 import Contact from './components/Pages/Contact';
 import Home from './components/Pages/Home';
 import Menu from './components/Pages/Menu';
-import GiftCards from './components/Pages/GiftCards';
+import HoursAndLocation from './components/Pages/HoursAndLocation';
 import Footer from './components/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLayoutEffect } from 'react';
@@ -42,8 +42,8 @@ export function AnimatedRoutes(){
          path="/ourstory"
           element={<PageWrapper><OurStory /></PageWrapper>} />
         <Route
-         path="/giftcards"
-         element={<PageWrapper><GiftCards /></PageWrapper>} />
+         path="/hours"
+         element={<PageWrapper><HoursAndLocation /></PageWrapper>} />
         <Route
          path="/contact"
           element={<PageWrapper><Contact /></PageWrapper>} />
